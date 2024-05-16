@@ -18,6 +18,14 @@ public class giocatoreSingolo {
 			System.out.println("somma:" + portafoglio);
 			System.out.println("inserire la puntata");
 			puntata = sc.nextInt();
+			while(puntata>portafoglio) {
+				System.out.println("somma:" + portafoglio);
+				System.out.println("diminuire la puntata");
+				puntata = sc.nextInt();				
+			}
+			System.out.println();
+			System.out.println("Inizio Partita");
+			System.out.println();
 
 			for (int i = 0; i < 40; i++) {
 				mazzo.add(i + 1);
@@ -131,8 +139,9 @@ public class giocatoreSingolo {
 			}
 
 		} while (nuovaPartita.equals("si"));
-		
+		System.out.println();
 		System.out.println("Montepremi finale: "+portafoglio);
+		System.out.println("Grazie per aver giocato");
 
 	}
 }
