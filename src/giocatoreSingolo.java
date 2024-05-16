@@ -15,7 +15,8 @@ public class giocatoreSingolo {
 		boolean sbancato = false;
 
 		do {
-			System.out.println("somma:" + portafoglio);
+			System.out.println("Montepremi: " + portafoglio);
+			
 			System.out.println("inserire la puntata");
 			puntata = sc.nextInt();
 			while(puntata>portafoglio) {
@@ -127,7 +128,8 @@ public class giocatoreSingolo {
 
 			valoreMano = 0;
 			valoreBanco = 0;
-
+			if(portafoglio<=0)
+				break;
 			System.out.println();
 			System.out.println("vuoi fare un altra partita? si/no");
 			nuovaPartita = sc.next();
