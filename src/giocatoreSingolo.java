@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class giocatoreSingolo {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Random r = new Random();
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Integer> mazzo = new ArrayList<Integer>();
@@ -14,8 +13,8 @@ public class giocatoreSingolo {
 		String risposta, nuovaPartita;
 		boolean sbancato = false;
 
-		do {
-			System.out.println("Montepremi: " + portafoglio);
+		do {  //ciclo partita
+			System.out.println("Montepremi: " + portafoglio); //puntata giocatore 1
 			
 			System.out.println("inserire la puntata");
 			puntata = sc.nextInt();
@@ -28,22 +27,21 @@ public class giocatoreSingolo {
 			System.out.println("Inizio Partita");
 			System.out.println();
 
-			for (int i = 0; i < 40; i++) {
+			for (int i = 0; i < 40; i++) {   //creazione mazzo
 				mazzo.add(i + 1);
 				// System.out.println(mazzo.get(i));
 			}
 
 			do { // ciclo giocatore
-				cartaPescata = r.nextInt(mazzo.size());
+				cartaPescata = r.nextInt(mazzo.size());  //carta random
 				// System.out.println();
 				// System.out.println(mazzo.get(cartaPescata));
 				mazzo.remove(cartaPescata);
 				manoGiocatore = (mazzo.get(cartaPescata));
 
-				if (manoGiocatore >= 1 && manoGiocatore <= 7) {
+				if (manoGiocatore >= 1 && manoGiocatore <= 7) { // stampa carta e aggiunta valore numerico
 					System.out.println(manoGiocatore + " di Bastoni");
 					valoreMano = valoreMano + manoGiocatore;
-
 				} else if (manoGiocatore >= 11 && manoGiocatore <= 17) {
 					System.out.println((manoGiocatore - 10) + " di Denari");
 					valoreMano = valoreMano + (manoGiocatore - 10);
@@ -58,7 +56,7 @@ public class giocatoreSingolo {
 					valoreMano = valoreMano + 0.50;
 				}
 
-				if (valoreMano > 7.50) {
+				if (valoreMano > 7.50) {  //check sbancato
 					System.out.println("punteggio: " + valoreMano);
 					sbancato = true;
 					break;
@@ -83,13 +81,13 @@ public class giocatoreSingolo {
 				if (sbancato) {
 					break;
 				} else {
-					cartaPescata = r.nextInt(mazzo.size());
+					cartaPescata = r.nextInt(mazzo.size()); //carta random
 					// System.out.println();
 					// System.out.println(mazzo.get(cartaPescata));
 					mazzo.remove(cartaPescata);
 					manoBanco = (mazzo.get(cartaPescata));
 
-					if (manoBanco >= 1 && manoBanco <= 7) {
+					if (manoBanco >= 1 && manoBanco <= 7) { // stampa carta e aggiunta valore numerico
 						System.out.println(manoBanco + " di Bastoni");
 						valoreBanco = valoreBanco + manoBanco;
 					} else if (manoBanco >= 11 && manoBanco <= 17) {
@@ -112,10 +110,10 @@ public class giocatoreSingolo {
 
 			System.out.println();
 
-			if (sbancato == true) {
+			if (sbancato == true) { //controllo condizioni e aggiornamento portafoglio
 				System.out.println("Banco vince");
 				portafoglio = portafoglio - puntata;
-			} else if (valoreBanco > 7.50) { // check vittoria
+			} else if (valoreBanco > 7.50) { 
 				System.out.println("Giocatore Vince");
 				portafoglio = portafoglio + puntata;
 			} else if (valoreBanco == 7.50 || valoreBanco >= valoreMano) {
@@ -126,12 +124,12 @@ public class giocatoreSingolo {
 				portafoglio = portafoglio + puntata;
 			}
 
-			valoreMano = 0;
+			valoreMano = 0;       //reset mano 
 			valoreBanco = 0;
-			if(portafoglio<=0)
+			if(portafoglio<=0)  //check se giocatore è senza fondi
 				break;
 			System.out.println();
-			System.out.println("vuoi fare un altra partita? si/no");
+			System.out.println("vuoi fare un altra partita? si/no"); //check nuova partita
 			nuovaPartita = sc.next();
 			sc.nextLine();
 			while (!(nuovaPartita.equals("si") || nuovaPartita.equals("no"))) {

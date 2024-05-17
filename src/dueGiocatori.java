@@ -14,8 +14,8 @@ public class dueGiocatori {
 		String risposta, nuovaPartita;
 		boolean sbancato = false, sbancato2 = false;
 
-		do {
-			System.out.println("Montepremi giocatore 1: " + portafoglio);
+		do {               //ciclo partita
+			System.out.println("Montepremi giocatore 1: " + portafoglio); //puntata giocatore 1
 			System.out.println("inserire la puntata");
 			puntata = sc.nextInt();
 			while (puntata > portafoglio) {
@@ -24,7 +24,7 @@ public class dueGiocatori {
 				puntata = sc.nextInt();
 			}
 
-			System.out.println("Montepremi giocatore 2: " + portafoglio2);
+			System.out.println("Montepremi giocatore 2: " + portafoglio2);   //puntata giocatore 2
 			System.out.println("inserire la puntata");
 			puntata2 = sc.nextInt();
 			while (puntata2 > portafoglio2) {
@@ -33,29 +33,28 @@ public class dueGiocatori {
 				puntata2 = sc.nextInt();
 			}
 
-			totalePuntata = puntata + puntata2;
+			totalePuntata = puntata + puntata2; //montepremi partita
 			System.out.println();
 			System.out.println("Inizio Partita");
 			System.out.println();
 			System.out.println("Turno Giocatore 1");
 			System.out.println();
 
-			for (int i = 0; i < 40; i++) {
+			for (int i = 0; i < 40; i++) {   //creazione mazzo
 				mazzo.add(i + 1);
 				// System.out.println(mazzo.get(i));
 			}
 
-			do { // ciclo giocatore
-				cartaPescata = r.nextInt(mazzo.size());
+			do { // ciclo giocatore 1
+				cartaPescata = r.nextInt(mazzo.size());   //carta random
 				// System.out.println();
 				// System.out.println(mazzo.get(cartaPescata));
 				mazzo.remove(cartaPescata);
 				manoGiocatore = (mazzo.get(cartaPescata));
 
-				if (manoGiocatore >= 1 && manoGiocatore <= 7) {
+				if (manoGiocatore >= 1 && manoGiocatore <= 7) {      // stampa carta e aggiunta valore numerico
 					System.out.println(manoGiocatore + " di Bastoni");
 					valoreMano = valoreMano + manoGiocatore;
-
 				} else if (manoGiocatore >= 11 && manoGiocatore <= 17) {
 					System.out.println((manoGiocatore - 10) + " di Denari");
 					valoreMano = valoreMano + (manoGiocatore - 10);
@@ -70,7 +69,7 @@ public class dueGiocatori {
 					valoreMano = valoreMano + 0.50;
 				}
 
-				if (valoreMano > 7.50) {
+				if (valoreMano > 7.50) { //check sbancato
 					System.out.println("punteggio: " + valoreMano);
 					sbancato = true;
 					break;
@@ -91,17 +90,16 @@ public class dueGiocatori {
 			System.out.println("Turno Giocatore 2");
 			System.out.println();
 
-			do {
-				cartaPescata = r.nextInt(mazzo.size());
+			do { //ciclo giocatore 2
+				cartaPescata = r.nextInt(mazzo.size()); //carta random
 				// System.out.println();
 				// System.out.println(mazzo.get(cartaPescata));
 				mazzo.remove(cartaPescata);
 				manoGiocatore2 = (mazzo.get(cartaPescata));
 
-				if (manoGiocatore2 >= 1 && manoGiocatore2 <= 7) {
+				if (manoGiocatore2 >= 1 && manoGiocatore2 <= 7) {   // stampa carta e aggiunta valore numerico
 					System.out.println(manoGiocatore2 + " di Bastoni");
 					valoreMano2 = valoreMano2 + manoGiocatore2;
-
 				} else if (manoGiocatore2 >= 11 && manoGiocatore2 <= 17) {
 					System.out.println((manoGiocatore2 - 10) + " di Denari");
 					valoreMano2 = valoreMano2 + (manoGiocatore2 - 10);
@@ -116,7 +114,7 @@ public class dueGiocatori {
 					valoreMano2 = valoreMano2 + 0.50;
 				}
 
-				if (valoreMano2 > 7.50) {
+				if (valoreMano2 > 7.50) {  //check sbancato
 					System.out.println("punteggio: " + valoreMano2);
 					sbancato2 = true;
 					break;
@@ -134,7 +132,7 @@ public class dueGiocatori {
 
 			} while (risposta.equals("peschi"));
 
-			System.out.println();
+			System.out.println();          //controllo condizioni e aggiornamento portafogli
 			if (sbancato == true) {
 				System.out.println("Giocatore 2 Vince");
 				portafoglio = portafoglio - puntata;
@@ -157,12 +155,12 @@ public class dueGiocatori {
 					System.out.println("Pareggio");
 			}
 
-			valoreMano = 0;
+			valoreMano = 0;        //reset mano giocatori
 			valoreMano2 = 0;
-			if (portafoglio <= 0 || portafoglio2 <= 0)
+			if (portafoglio <= 0 || portafoglio2 <= 0) //check se un giocatore è senza fondi
 				break;
 			System.out.println();
-			System.out.println("vuoi fare un altra partita? si/no");
+			System.out.println("vuoi fare un altra partita? si/no");  //check nuova partita
 			nuovaPartita = sc.next();
 			sc.nextLine();
 			while (!(nuovaPartita.equals("si") || nuovaPartita.equals("no"))) {
